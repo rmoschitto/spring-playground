@@ -34,15 +34,15 @@ public class EndpointsController {
             }
             case "subtract" -> {
                 solution = x - y;
-                printEnding =  String.format("%d - %d = %f", x, y, solution);
+                printEnding = String.format("%d - %d = %f", x, y, solution);
             }
             case "multiply" -> {
                 solution = x * y;
-                printEnding =  String.format("%d * %d = %f", x, y, solution);
+                printEnding = String.format("%d * %d = %f", x, y, solution);
             }
             case "divide" -> {
                 solution = x / y;
-                printEnding =  String.format("%d / %d = %f", x, y, solution);
+                printEnding = String.format("%d / %d = %f", x, y, solution);
             }
         }
         return printEnding;
@@ -50,18 +50,39 @@ public class EndpointsController {
 
     @PostMapping("/math/sum")
     public String passMathSumParameters(@RequestParam MultiValueMap<String, String> requestParams) {
-        double totalSum = 0;
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < requestParams.size(); i++) {
-            String currentValue = String.valueOf(requestParams.get(i));
-            int currentNumber = Integer.parseInt(currentValue);
-            totalSum += currentNumber;
-            //string builder to add each n value for the return statement
+        int sum = 0;
+        StringBuilder sb = new StringBuilder(); // Empty String waiting to add the n #'s
+        for (int i = 0; i < requestParams.get("n").size(); i++) {
+            int currentNumber = Integer.parseInt(requestParams.get("n").get(i));
+            sum += currentNumber;
+            sb.append(currentNumber);
+            if (i == requestParams.get("n").size() - 1) {
+                sb.append(" = ");
+                sb.append(sum);
+            } else {
+                sb.append(" + ");
+            }
         }
-        return String.format("This is sum %s", totalSum);
+        return sb.toString();
     }
-
 }
+
+
+//
+//
+//
+//
+//
+//        double totalSum = 0;
+//        StringBuilder sb = new StringBuilder();
+//        for (int i = 0; i < requestParams.size(); i++) {
+//            String currentValue = String.valueOf(requestParams.get(i));
+//            int currentNumber = Integer.parseInt(currentValue);
+//            totalSum += currentNumber;
+//            //string builder to add each n value for the return statement
+//        }
+//        return String.format("This is sum %s", totalSum);
+//    }
 
 
 

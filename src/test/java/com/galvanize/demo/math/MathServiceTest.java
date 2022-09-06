@@ -1,15 +1,17 @@
 package com.galvanize.demo.math;
 
+import com.galvanize.demo.EndpointsController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(MathService.class)
+@WebMvcTest(EndpointsController.class)
 public class MathServiceTest {
 
     @Autowired
@@ -63,6 +65,13 @@ public class MathServiceTest {
             throw new RuntimeException(e);
 
         }
+    }
+
+    @Test
+    void sumReturnsCorrectly() throws Exception {
+        this.mvc.perform(post("/math/sum?n=4&n=5&n=6"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("4 + 5 + 6 = 15"));
     }
 }
 
