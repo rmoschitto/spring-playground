@@ -1,4 +1,4 @@
-package com.galvanize.demo;
+package com.galvanize.demo.math;
 
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,45 +7,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-
 @RestController
-public class EndpointsController {
-
-    @GetMapping("/test")
-    public String getIndex() {
-        return "GET to index route";
-    }
-
-
-    //NOTE: The name of the method getTasks is not important. It could be foo or bar and it would still work
-    @GetMapping("/tasks")
-    public String getTasks() {
-        return "These are tasks";
-    }
+public class MathService {
 
     @GetMapping("/math/calculate")
     public String getCalculations(@RequestParam(required = false, value = "operation", defaultValue = "add") String operationType, @RequestParam int x, @RequestParam int y) {
         float solution = 0.f;
-        String printEnding = "";
+        String output = "";
         switch (operationType) {
             case "add" -> {
                 solution = x + y;
-                printEnding = String.format("%d + %d = %f", x, y, solution);
+                output = String.format("%d + %d = %f", x, y, solution);
             }
             case "subtract" -> {
                 solution = x - y;
-                printEnding =  String.format("%d - %d = %f", x, y, solution);
+                output =  String.format("%d - %d = %f", x, y, solution);
             }
             case "multiply" -> {
                 solution = x * y;
-                printEnding =  String.format("%d * %d = %f", x, y, solution);
+                output =  String.format("%d * %d = %f", x, y, solution);
             }
             case "divide" -> {
                 solution = x / y;
-                printEnding =  String.format("%d / %d = %f", x, y, solution);
+                output =  String.format("%d / %d = %f", x, y, solution);
             }
         }
-        return printEnding;
+        return output;
     }
 
     @PostMapping("/math/sum")
@@ -62,13 +49,3 @@ public class EndpointsController {
     }
 
 }
-
-
-
-
-    //    @GetMapping("/cats")
-//    public String getSpecificCats(@RequestParam String name, @RequestParam String color){
-//        return String.format("The name of the cat is %s and it is a %s.", name, color);
-//    }
-
-
