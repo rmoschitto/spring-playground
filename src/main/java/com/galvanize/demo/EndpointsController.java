@@ -1,11 +1,7 @@
 package com.galvanize.demo;
 
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -65,6 +61,17 @@ public class EndpointsController {
         }
         return sb.toString();
     }
+
+    @RequestMapping("/math/volume/{l}/{w}/{h}")
+    public String calculateVolumeOfRectangle(
+            @PathVariable int l,
+            @PathVariable int w,
+            @PathVariable int h
+    ){
+        return String.format("The volume of a %dx%dx%d rectangle is %d", l, w, h, l * w * h);
+    }
+
+
 }
 
 
@@ -85,9 +92,7 @@ public class EndpointsController {
 //    }
 
 
-
-
-    //    @GetMapping("/cats")
+//    @GetMapping("/cats")
 //    public String getSpecificCats(@RequestParam String name, @RequestParam String color){
 //        return String.format("The name of the cat is %s and it is a %s.", name, color);
 //    }
