@@ -31,12 +31,12 @@ public class HelloControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("POST to messages route"));
     }
-    @Test
-    public void testPIWeb() throws Exception {
-        this.mvc.perform(get("/math/pi"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("3.141592653589793"));
-    }
+//    @Test
+//    public void testPIWeb() throws Exception {
+//        this.mvc.perform(get("/math/pi"))
+//                .andExpect(status().isOk())
+//                .andExpect(content().string("3.141592653589793"));
+//    }
 
 
 
