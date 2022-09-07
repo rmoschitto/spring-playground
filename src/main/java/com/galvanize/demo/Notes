@@ -1,0 +1,36 @@
+				http://localhost:8080/cats?name=Spot&age=3
+							/cats/patches/5
+							/cats/oliver?age=6
+
+
+@GetMapping( (/cats/{name}))
+public string  combinedEx(@PathVariable String name, @PathVariable int age,
+
+Query Param:   @GetMapping(“/cats”)
+	public String queryExample (@RequestParam String name, @RequesParam int age
+
+Path Variables: @GetMapping(/cats/{name}/{age})
+	public string  pathexample (@PathVariable String name, @PathVariable int age,
+
+Accesses Cat Class:   @GetMapping(“/cats”)
+	public String queryExample(Cat cat)
+
+
+
+Form Data:
+•	The form data will be in the request body
+•	You can access the data 2 ways: @RequestBody  or   @RequestParam
+•	Name = tiger , age = 10
+•	Create a new cat
+@PostMapping(“/cats”)
+Public String createCat(@RequestParam String name, @RequestParam int age)  {
+			(@RequestBody String catInfo)
+			(@RequestBody Map<String, String> CatInfo)
+			(@RequestBody Cat cat)
+
+Cookies & Headers:
+•	Save info for a website
+•	Meta Info that describes the request
+        public String headers(@RequestHeader String host)    // accept or host .. Spring knows
+        public String headerMap(@RequestHeader Map<String,String>)
+        public String headerCookie(@CookieValue(name = "foo") String foo)

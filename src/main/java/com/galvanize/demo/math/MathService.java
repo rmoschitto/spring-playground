@@ -47,6 +47,27 @@ public class MathService {
         }
         return sb.toString();
     }
+
+    public static String calculateAreaCircle(double radius){
+        //if the type is circle calculate area
+        //requires radius else invalid
+        double area;
+        String printEnding;
+        area = Math.PI * radius * radius;
+        printEnding = String.format("Area of a circle with a radius of %f is %f.", radius, area);
+        return printEnding;
+    }
+
+    public static String calculateAreaRectangle(double width, double height){
+        //if the type is rectangle calculate area
+        //requires width and height else invalid
+        double area;
+        area = width * height;
+        String printEnding;
+        printEnding = String.format("Area of a %fx%f rectangle is %f.", width, height, area);
+        return printEnding;
+    }
+
 }
     //
 //        //iteration
